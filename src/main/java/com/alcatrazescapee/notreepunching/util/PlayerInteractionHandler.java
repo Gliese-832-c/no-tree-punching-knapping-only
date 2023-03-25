@@ -109,7 +109,7 @@ public final class PlayerInteractionHandler
                     int i = 0;
                     for (KnappingRecipe recipe : ModRecipes.KNAPPING.getAll()) {
                         for (ItemStack itemStack : recipe.getInput().getStacks()) {
-                            if (stack.getItem() == itemStack.getItem()) {
+                            if ((stack.getItem() == itemStack.getItem()) && (stack.getMetadata() == itemStack.getMetadata())) {
                                 isTheRightItem = true;
                                 outputs = recipe.getOutput();
                                 break;
@@ -122,7 +122,7 @@ public final class PlayerInteractionHandler
                     }
 
                     for (ItemStack itemStack : outputs) {
-                        CoreHelpers.dropItemInWorldExact(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, itemStack);
+                        CoreHelpers.dropItemInWorldExact(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, new ItemStack(itemStack.getItem(), itemStack.getCount(), itemStack.getMetadata()));
                     }
                 }
                 player.setHeldItem(hand, CoreHelpers.consumeItem(player, stack));
