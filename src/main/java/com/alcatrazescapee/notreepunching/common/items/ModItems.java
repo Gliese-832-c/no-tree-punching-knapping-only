@@ -30,10 +30,6 @@ import static com.alcatrazescapee.notreepunching.common.ModMaterials.TOOL_FLINT;
 @GameRegistry.ObjectHolder(value = MOD_ID)
 public final class ModItems
 {
-    public static final Item FLINT_SHARD = getNull();
-    public static final Item GRASS_FIBER = getNull();
-    public static final Item GRASS_STRING = getNull();
-    public static final Item CLAY_BRICK = getNull();
     public static final Item CERAMIC_SMALL_VESSEL = getNull();
     public static final Item CERAMIC_BUCKET = getNull();
     public static final Item CLAY_TOOL = getNull();
@@ -56,18 +52,9 @@ public final class ModItems
         RegistryHelper r = RegistryHelper.get(MOD_ID);
         Item item;
 
-        r.registerItem(new ItemCore(), "grass_fiber", TAB_ITEMS);
         r.registerItem(new ItemClayTool(), "clay_tool", TAB_TOOLS);
         r.registerItem(new ItemSmallVessel(), "ceramic_small_vessel", TAB_ITEMS);
         r.registerItem(new ItemCeramicBucket(), "ceramic_bucket", TAB_ITEMS);
-
-        r.registerItem(item = new ItemCore(), "grass_string", TAB_ITEMS);
-        OreDictionaryHelper.register(item, "kindling");
-        OreDictionaryHelper.register(item, "string");
-        r.registerItem(item = new ItemCore(), "flint_shard", TAB_ITEMS);
-        OreDictionaryHelper.register(item, "shard", "flint");
-        r.registerItem(item = new ItemCore(), "clay_brick", TAB_ITEMS);
-        OreDictionaryHelper.register(item, "brick", "clay");
 
         {
             // Tools
@@ -105,10 +92,6 @@ public final class ModItems
     @SuppressWarnings("ConstantConditions")
     public static void init()
     {
-        // Vanilla ore dictionary additions
-        OreDictionary.registerOre("kindling", Items.PAPER);
-        OreDictionary.registerOre("kindling", Blocks.HAY_BLOCK);
-
         OreDictionaryHelper.register(CLAY_TOOL, "tool", "clay");
 
         // Remove wood + stone tools from creative tabs

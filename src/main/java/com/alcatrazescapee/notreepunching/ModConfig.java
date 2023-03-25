@@ -64,10 +64,6 @@ public final class ModConfig
         @Config.RangeDouble(min = 0, max = 1)
         public double leavesStickDropChance = 0.2;
 
-        @Config.Comment("The chance for tall grass to drop plant fiber when broken with a knife")
-        @Config.RangeDouble(min = 0, max = 1)
-        public double tallGrassDropPlantFiberChance = 0.4;
-
         private BalanceConfig() {}
     }
 

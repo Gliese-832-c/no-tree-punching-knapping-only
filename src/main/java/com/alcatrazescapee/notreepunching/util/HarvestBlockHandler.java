@@ -35,14 +35,10 @@ import mcp.MethodsReturnNonnullByDefault;
 public final class HarvestBlockHandler
 {
     private static final Set<Predicate<IBlockState>> EXCEPTIONS = new HashSet<>();
-    private static final List<ItemStack> GRASS_DROPS = new ArrayList<>();
 
     public static void postInit()
     {
         reloadWhitelist();
-
-        addGrassDrop(new ItemStack(ModItems.GRASS_FIBER));
-        addGrassDrop(new ItemStack(ModItems.GRASS_FIBER, 2));
     }
 
     public static void reloadWhitelist()
@@ -79,21 +75,6 @@ public final class HarvestBlockHandler
             if (Util.RNG.nextFloat() < stickChance)
             {
                 drops.add(new ItemStack(Items.STICK, 1 + Util.RNG.nextInt(1)));
-            }
-        }
-
-        // Plant fiber from grass
-        if (state.getBlock() instanceof BlockTallGrass || (state.getBlock() instanceof BlockDoublePlant && (state.getValue(BlockDoublePlant.VARIANT) == BlockDoublePlant.EnumPlantType.FERN || state.getValue(BlockDoublePlant.VARIANT) == BlockDoublePlant.EnumPlantType.GRASS)))
-        {
-            if (stack.getItem() instanceof ItemKnife)
-            {
-                if (Util.RNG.nextFloat() < ModConfig.BALANCE.tallGrassDropPlantFiberChance)
-                {
-                    ItemStack drop = GRASS_DROPS.get(Util.RNG.nextInt(GRASS_DROPS.size()));
-                    drops.add(drop.copy());
-                }
-                stack.damageItem(1, player);
-                player.setHeldItem(EnumHand.MAIN_HAND, stack); // Necessary because the stack came from IPlayerItem
             }
         }
     }
@@ -164,11 +145,6 @@ public final class HarvestBlockHandler
     public static boolean isWhitelisted(IBlockState state)
     {
         return EXCEPTIONS.stream().anyMatch(x -> x.test(state));
-    }
-
-    public static void addGrassDrop(ItemStack stack)
-    {
-        GRASS_DROPS.add(stack);
     }
 
     private static Predicate<IBlockState> createPredicate(String entry) throws IllegalArgumentException

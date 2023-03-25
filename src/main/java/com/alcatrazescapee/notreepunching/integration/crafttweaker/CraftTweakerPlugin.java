@@ -26,25 +26,6 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public final class CraftTweakerPlugin
 {
     @ZenMethod
-    public static void addKnifeGrassDrop(IItemStack stack)
-    {
-        CraftTweakerAPI.apply(new IAction()
-        {
-            @Override
-            public void apply()
-            {
-                HarvestBlockHandler.addGrassDrop(CraftTweakerPlugin.toStack(stack));
-            }
-
-            @Override
-            public String describe()
-            {
-                return "Adding Knife grass drop for " + stack.getDisplayName();
-            }
-        });
-    }
-
-    @ZenMethod
     public static void addWoodChoppingRecipe(IItemStack inputStack, IItemStack outputStack)
     {
         CraftTweakerAPI.apply(new IAction()
