@@ -6,14 +6,10 @@
 
 package com.alcatrazescapee.notreepunching.common.items;
 
-import com.google.common.collect.ImmutableMap;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
 
-import com.alcatrazescapee.alcatrazcore.item.ItemCore;
 import com.alcatrazescapee.alcatrazcore.util.OreDictionaryHelper;
 import com.alcatrazescapee.alcatrazcore.util.RegistryHelper;
 import com.alcatrazescapee.alcatrazcore.util.collections.ImmutableEnumTable;
@@ -25,7 +21,6 @@ import static com.alcatrazescapee.alcatrazcore.util.CoreHelpers.getNull;
 import static com.alcatrazescapee.notreepunching.NoTreePunching.MOD_ID;
 import static com.alcatrazescapee.notreepunching.client.ModTabs.TAB_ITEMS;
 import static com.alcatrazescapee.notreepunching.client.ModTabs.TAB_TOOLS;
-import static com.alcatrazescapee.notreepunching.common.ModMaterials.TOOL_FLINT;
 
 @GameRegistry.ObjectHolder(value = MOD_ID)
 public final class ModItems
@@ -34,13 +29,7 @@ public final class ModItems
     public static final Item CERAMIC_BUCKET = getNull();
     public static final Item CLAY_TOOL = getNull();
 
-    private static ImmutableMap<ToolType, Item> FLINT_TOOLS;
     private static ImmutableEnumTable<ToolType, Metal, Item> METAL_TOOLS;
-
-    public static Item getFlintTool(ToolType type)
-    {
-        return FLINT_TOOLS.get(type);
-    }
 
     public static Item getTool(ToolType type, Metal metal)
     {
@@ -58,17 +47,10 @@ public final class ModItems
 
         {
             // Tools
-            ImmutableMap.Builder<ToolType, Item> flintTools = new ImmutableMap.Builder<>();
             ImmutableEnumTable.Builder<ToolType, Metal, Item> metalTools = new ImmutableEnumTable.Builder<>(ToolType.class, Metal.class);
 
             for (ToolType type : ToolType.values())
             {
-                if (type.isFlintTool)
-                {
-                    flintTools.put(type, r.registerItem(item = type.createFlint(TOOL_FLINT), type.name() + "/flint", TAB_TOOLS));
-                    OreDictionaryHelper.register(item, "tool", "weak", type.name());
-                }
-
                 if (type.isNewTool)
                 {
                     for (Metal metal : Metal.values())
@@ -84,7 +66,6 @@ public final class ModItems
                 }
             }
 
-            FLINT_TOOLS = flintTools.build();
             METAL_TOOLS = metalTools.build();
         }
     }

@@ -5,12 +5,6 @@ item.notreepunching:ceramic_small_vessel.name=Ceramic Small Vessel
 item.notreepunching:ceramic_bucket.name=Ceramic Bucket
 item.notreepunching:ceramic_bucket.filled.name=Ceramic Bucket (%s)
 
-item.notreepunching:axe.flint.name=Flint Hatchet
-item.notreepunching:shovel.flint.name=Flint Shovel
-item.notreepunching:hoe.flint.name=Flint Hoe
-item.notreepunching:pickaxe.flint.name=Flint Pickaxe
-item.notreepunching:knife.flint.name=Flint Knife
-
 item.notreepunching:knife.iron.name=Iron Knife
 item.notreepunching:knife.gold.name=Gold Knife
 item.notreepunching:knife.diamond.name=Diamond Knife

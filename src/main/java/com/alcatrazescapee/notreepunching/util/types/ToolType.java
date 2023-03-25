@@ -20,40 +20,18 @@ import com.alcatrazescapee.notreepunching.common.items.ItemSaw;
 
 public enum ToolType
 {
-    PICKAXE(true, false),
-    AXE(true, false),
-    SHOVEL(true, false),
-    HOE(true, false),
-    KNIFE(true, true),
-    MATTOCK(false, true),
-    SAW(false, true);
-
-    public final boolean isFlintTool;
+    PICKAXE(false),
+    AXE(false),
+    SHOVEL(false),
+    HOE(false),
+    KNIFE(true),
+    MATTOCK(true),
+    SAW(true);
     public final boolean isNewTool;
 
-    ToolType(boolean isFlintTool, boolean isNewTool)
+    ToolType(boolean isNewTool)
     {
-        this.isFlintTool = isFlintTool;
         this.isNewTool = isNewTool;
-    }
-
-    @Nonnull
-    public Item createFlint(Item.ToolMaterial material)
-    {
-        switch (this)
-        {
-            case PICKAXE:
-                return new ItemPickCore(material);
-            case HOE:
-                return new ItemHoeCore(material);
-            case AXE:
-                return new ItemAxeCore(material);
-            case SHOVEL:
-                return new ItemSpadeCore(material);
-            case KNIFE:
-                return new ItemKnife(material);
-        }
-        throw new IllegalStateException("This type does not support flint tools");
     }
 
     @Nonnull

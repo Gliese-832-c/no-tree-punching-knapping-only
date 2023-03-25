@@ -83,7 +83,7 @@ public class ItemKnife extends ItemToolCore
 
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase entity, EnumHand hand)
     {
-        if (!entity.world.isRemote && entity instanceof IShearable && this.toolMaterial != ModMaterials.TOOL_FLINT)
+        if (!entity.world.isRemote && entity instanceof IShearable)
         {
             IShearable target = (IShearable) entity;
             BlockPos pos = new BlockPos(entity.posX, entity.posY, entity.posZ);

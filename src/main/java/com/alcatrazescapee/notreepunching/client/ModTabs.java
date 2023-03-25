@@ -8,6 +8,7 @@ package com.alcatrazescapee.notreepunching.client;
 
 import javax.annotation.Nonnull;
 
+import com.alcatrazescapee.notreepunching.util.types.Metal;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -39,7 +40,7 @@ public final class ModTabs
         @Nonnull
         public ItemStack createIcon()
         {
-            return new ItemStack(ModItems.getFlintTool(ToolType.PICKAXE));
+            return new ItemStack(ModItems.getTool(ToolType.PICKAXE, Metal.IRON));
         }
     };
 }

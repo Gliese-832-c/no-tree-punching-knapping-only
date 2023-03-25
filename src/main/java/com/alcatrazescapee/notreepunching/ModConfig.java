@@ -69,11 +69,6 @@ public final class ModConfig
 
     public static class ToolsConfig
     {
-        @Config.Comment("Mining level of flint tools. 0 = Wood, 1 = Stone, 2 = Iron, 3 = Diamond")
-        @Config.RangeInt(min = 0, max = 4)
-        @Config.RequiresMcRestart
-        public int miningLevelFlint = 1;
-
         @Config.Comment("Mining level of tin tools. 0 = Wood, 1 = Stone, 2 = Iron, 3 = Diamond")
         @Config.RangeInt(min = 0, max = 4)
         @Config.RequiresMcRestart
