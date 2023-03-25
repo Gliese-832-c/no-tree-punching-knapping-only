@@ -15,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -24,11 +23,9 @@ import net.minecraftforge.registries.IForgeRegistryModifiable;
 import com.alcatrazescapee.alcatrazcore.inventory.recipe.IRecipeManager;
 import com.alcatrazescapee.alcatrazcore.inventory.recipe.RecipeManager;
 import com.alcatrazescapee.notreepunching.ModConfig;
-import com.alcatrazescapee.notreepunching.common.blocks.BlockPottery;
 import com.alcatrazescapee.notreepunching.common.items.ModItems;
 import com.alcatrazescapee.notreepunching.util.Util;
 import com.alcatrazescapee.notreepunching.util.types.Metal;
-import com.alcatrazescapee.notreepunching.util.types.Pottery;
 import com.alcatrazescapee.notreepunching.util.types.ToolType;
 
 import static com.alcatrazescapee.notreepunching.NoTreePunching.MOD_ID;
@@ -41,16 +38,6 @@ public final class ModRecipes
 
     public static void init()
     {
-        // Pottery Smelting + Fire pit
-        for (Pottery type : Pottery.values())
-        {
-            if (type != Pottery.WORKED)
-            {
-                BlockPottery block = BlockPottery.get(type);
-                GameRegistry.addSmelting(block, block.getFiredType(), 0.1f);
-            }
-        }
-
         /* KNIFE RECIPES */
 
         KNIFE.add(new KnifeRecipe(new ItemStack(Blocks.WOOL, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(Items.STRING, 4)));

@@ -17,18 +17,12 @@ import com.alcatrazescapee.notreepunching.ModConfig;
 import com.alcatrazescapee.notreepunching.util.types.Metal;
 import com.alcatrazescapee.notreepunching.util.types.ToolType;
 
-import static com.alcatrazescapee.alcatrazcore.util.CoreHelpers.getNull;
 import static com.alcatrazescapee.notreepunching.NoTreePunching.MOD_ID;
-import static com.alcatrazescapee.notreepunching.client.ModTabs.TAB_ITEMS;
-import static com.alcatrazescapee.notreepunching.client.ModTabs.TAB_TOOLS;
+import static com.alcatrazescapee.notreepunching.client.ModTabs.MOD_TAB;
 
 @GameRegistry.ObjectHolder(value = MOD_ID)
 public final class ModItems
 {
-    public static final Item CERAMIC_SMALL_VESSEL = getNull();
-    public static final Item CERAMIC_BUCKET = getNull();
-    public static final Item CLAY_TOOL = getNull();
-
     private static ImmutableEnumTable<ToolType, Metal, Item> METAL_TOOLS;
 
     public static Item getTool(ToolType type, Metal metal)
@@ -40,10 +34,6 @@ public final class ModItems
     {
         RegistryHelper r = RegistryHelper.get(MOD_ID);
         Item item;
-
-        r.registerItem(new ItemClayTool(), "clay_tool", TAB_TOOLS);
-        r.registerItem(new ItemSmallVessel(), "ceramic_small_vessel", TAB_ITEMS);
-        r.registerItem(new ItemCeramicBucket(), "ceramic_bucket", TAB_ITEMS);
 
         {
             // Tools
@@ -59,7 +49,7 @@ public final class ModItems
                         // todo: make these always register and then check if enabled later
                         if (metal.isEnabled)
                         {
-                            metalTools.put(type, metal, item = r.registerItem(type.createTool(metal.toolMaterial), type.name() + "/" + metal.name(), TAB_TOOLS));
+                            metalTools.put(type, metal, item = r.registerItem(type.createTool(metal.toolMaterial), type.name() + "/" + metal.name(), MOD_TAB));
                             OreDictionaryHelper.register(item, "tool", type.name());
                         }
                     }
@@ -73,8 +63,6 @@ public final class ModItems
     @SuppressWarnings("ConstantConditions")
     public static void init()
     {
-        OreDictionaryHelper.register(CLAY_TOOL, "tool", "clay");
-
         // Remove wood + stone tools from creative tabs
         if (ModConfig.GENERAL.replaceVanillaRecipes)
         {

@@ -1,0 +1,46 @@
+# Items
+
+item.yesflintknapping:knife.iron.name=Iron Knife
+item.yesflintknapping:knife.gold.name=Gold Knife
+item.yesflintknapping:knife.diamond.name=Diamond Knife
+item.yesflintknapping:knife.copper.name=Copper Knife
+item.yesflintknapping:knife.tin.name=Tin Knife
+item.yesflintknapping:knife.bronze.name=Bronze Knife
+item.yesflintknapping:knife.steel.name=Steel Knife
+
+item.yesflintknapping:saw.iron.name=Iron Saw
+item.yesflintknapping:saw.gold.name=Gold Saw
+item.yesflintknapping:saw.diamond.name=Diamond Saw
+item.yesflintknapping:saw.copper.name=Copper Saw
+item.yesflintknapping:saw.tin.name=Tin Saw
+item.yesflintknapping:saw.bronze.name=Bronze Saw
+item.yesflintknapping:saw.steel.name=Steel Saw
+
+item.yesflintknapping:mattock.iron.name=Iron Mattock
+item.yesflintknapping:mattock.gold.name=Gold Mattock
+item.yesflintknapping:mattock.diamond.name=Diamond Mattock
+item.yesflintknapping:mattock.copper.name=Copper Mattock
+item.yesflintknapping:mattock.tin.name=Tin Mattock
+item.yesflintknapping:mattock.bronze.name=Bronze Mattock
+item.yesflintknapping:mattock.steel.name=Steel Mattock
+
+# Blocks
+
+tile.yesflintknapping:ceramic_large_vessel_raw.name=Clay Vessel (Raw)
+tile.yesflintknapping:ceramic_large_vessel.name=Clay Vessel
+
+# JEI
+
+jei.category.knife_recipe=Knife Cutting
+
+jei.description.stick=Sticks are dropped occasionally from leaves.
+jei.description.flint_shard=Flint shards are obtained by knapping (right clicking) a piece of flint on top of any rocky surface. It has a chance to split into two flint shards.
+jei.description.knife=Knives can be used to cut materials. Hold the knife in one and and the item in the other. Right click to cut the material in your other hand.
+jei.description.mattock=Mattocks are multi-purpose tools: An axe and shovel and a hoe all in one!
+jei.description.saw=Saws are used to cut wood into planks. They can also be used as axes.
+
+# Misc
+
+itemGroup.yesflintknapping=Yes Flint Knapping
+
+yesflintknapping.subtitle.knapping.name=Stone taps

@@ -7,10 +7,7 @@
 package com.alcatrazescapee.notreepunching;
 
 import org.apache.logging.log4j.Logger;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.ICrashCallable;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.event.FMLFingerprintViolationEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -30,12 +27,12 @@ import com.alcatrazescapee.notreepunching.util.WoodRecipeHandler;
 public final class NoTreePunching
 {
 
-    public static final String MOD_ID = "notreepunching";
-    public static final String MOD_NAME = "No Tree Punching";
-    public static final String VERSION = "GRADLE:VERSION";
+    public static final String MOD_ID = "yesflintknapping";
+    public static final String MOD_NAME = "Yes Flint Knapping";
+    public static final String VERSION = "1.0.0";
 
     // Versioning
-    private static final String FORGE_MIN = "14.23.4.2705";
+    private static final String FORGE_MIN = "14.23.5.2847";
     private static final String FORGE_MAX = "15.0.0.0";
     private static final String ALC_MIN = "1.0.0";
     private static final String ALC_MAX = "2.0.0";
@@ -45,7 +42,6 @@ public final class NoTreePunching
     @Mod.Instance
     private static NoTreePunching instance;
     private static Logger log;
-    private static boolean isSignedBuild = true;
 
     public static NoTreePunching getInstance()
     {
@@ -62,8 +58,6 @@ public final class NoTreePunching
     {
         log = event.getModLog();
         log.debug("If you can see this, debug logging is working :)");
-        if (!isSignedBuild)
-            log.warn("You are not running an official build. This version will NOT be supported by the author.");
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new ModGuiHandler());
 
@@ -77,9 +71,6 @@ public final class NoTreePunching
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        if (!isSignedBuild)
-            log.warn("You are not running an official build. This version will NOT be supported by the author.");
-
         // Init Managers
         ModRecipes.init();
         ModItems.init();
@@ -88,9 +79,6 @@ public final class NoTreePunching
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        if (!isSignedBuild)
-            log.warn("You are not running an official build. This version will NOT be supported by the author.");
-
         // Post-Init Managers
         HarvestBlockHandler.postInit();
 
@@ -101,7 +89,7 @@ public final class NoTreePunching
         ModRecipes.postInit();
     }
 
-    @Mod.EventHandler
+    /*@Mod.EventHandler
     public void onFingerprintViolation(FMLFingerprintViolationEvent event)
     {
         isSignedBuild = false;
@@ -119,5 +107,5 @@ public final class NoTreePunching
                 return "You are not running an official build. This version will NOT be supported by the author.";
             }
         });
-    }
+    }*/
 }

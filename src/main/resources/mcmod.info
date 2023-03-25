@@ -1,14 +1,14 @@
 [
 {
-  "modid": "notreepunching",
-  "name": "No Tree Punching",
-  "description": "A small mod to make the first day or two of play more believable. Adds a few new tools and early game resource gathering.",
+  "modid": "yesflintknapping",
+  "name": "Yes Flint Knapping",
+  "description": "A fork of No Tree Punching removing most things in the mod and adding some config options.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["AlcatrazEscapee"],
-  "credits": "",
+  "authorList": ["AlcatrazEscapee", "Gliese 832 c"],
+  "credits": "AlcatrazEscapee for making the original mod this fork is based upon.",
   "logoFile": "assets/icon.png",
   "screenshots": [],
   "dependencies": []

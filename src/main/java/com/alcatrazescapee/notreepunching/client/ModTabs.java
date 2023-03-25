@@ -10,7 +10,6 @@ import javax.annotation.Nonnull;
 
 import com.alcatrazescapee.notreepunching.util.types.Metal;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -22,25 +21,14 @@ import static com.alcatrazescapee.notreepunching.NoTreePunching.MOD_ID;
 
 public final class ModTabs
 {
-    public static final CreativeTabs TAB_ITEMS = new CreativeTabs(MOD_ID + ".items")
+    public static final CreativeTabs MOD_TAB = new CreativeTabs(MOD_ID)
     {
         @SideOnly(Side.CLIENT)
         @Override
         @Nonnull
         public ItemStack createIcon()
         {
-            return new ItemStack(Items.DIAMOND);
-        }
-    };
-
-    public static final CreativeTabs TAB_TOOLS = new CreativeTabs(MOD_ID + ".tools")
-    {
-        @SideOnly(Side.CLIENT)
-        @Override
-        @Nonnull
-        public ItemStack createIcon()
-        {
-            return new ItemStack(ModItems.getTool(ToolType.PICKAXE, Metal.IRON));
+            return new ItemStack(ModItems.getTool(ToolType.SAW, Metal.IRON));
         }
     };
 }

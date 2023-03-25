@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "yesflintknapping:pottery/large_vessel",
+    "textures": {
+      "all": "minecraft:blocks/clay",
+      "particle": "minecraft:blocks/clay"
+    }
+  },
+  "variants": {
+    "normal": {
+      "transform": "forge:default-block"
+    }
+  }
+}
