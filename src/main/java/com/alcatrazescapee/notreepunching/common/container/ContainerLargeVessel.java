@@ -8,6 +8,7 @@ package com.alcatrazescapee.notreepunching.common.container;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -38,5 +39,10 @@ public class ContainerLargeVessel extends ContainerTileInventory<TileLargeVessel
                 }
             }
         }
+    }
+
+    @Override
+    public boolean canInteractWith(EntityPlayer playerIn) {
+        return true;
     }
 }

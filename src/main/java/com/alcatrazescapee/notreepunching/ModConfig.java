@@ -17,7 +17,6 @@ public final class ModConfig
     public static final GeneralConfig GENERAL = new GeneralConfig();
     public static final BalanceConfig BALANCE = new BalanceConfig();
     public static final ToolsConfig TOOLS = new ToolsConfig();
-    public static final CompatConfig COMPAT = new CompatConfig();
 
     public static class GeneralConfig
     {
@@ -44,22 +43,6 @@ public final class ModConfig
         @Config.Comment("If false, this will disable all changes to breaking speed + block drops.")
         public boolean enableBreakingChanges = true;
 
-        @Config.Comment("If false, this will disable all changes to Stone / Cobblestone drops.")
-        public boolean enableStoneDropChanges = true;
-
-        @Config.Comment("If false, this will disable stone variants (andesite, diorite, and granite) from appearing, except if the respective stone is found during world gen. (It will only disable random occurrences, not ones based on the underground material.)")
-        public boolean enableRandomStoneWorldGenVariants = false;
-
-        @Config.Comment("If false, this will disable NTP world gen (surface rocks).")
-        public boolean looseRocksGeneration = true;
-        
-        @Config.Comment("If false, this will disable the ability to get torches from fire pits.")
-        public boolean allowTorchesFromFirePits = true;
-
-        @Config.Comment("Frequency of loose rocks in the world")
-        @Config.RangeInt(min = 1, max = 1000)
-        public int looseRocksFrequency = 10;
-
         private GeneralConfig() {}
     }
 
@@ -77,22 +60,6 @@ public final class ModConfig
         @Config.RangeDouble(min = 0, max = 1)
         public double logChoppingChance = 0.6;
 
-        @Config.Comment("Fire pit cook time (in ticks). Furnace is 200 ticks")
-        @Config.RangeInt(min = 20)
-        public int firePitCookTime = 400;
-
-        @Config.Comment("Fire pit fuel efficiency multiplier as compared to the furnace")
-        @Config.RangeInt(min = 1)
-        public int firePitFuelMultiplier = 5;
-
-        @Config.Comment("The maximum burn amount required for a fire pit fuel. (in ticks, coal = 1600)")
-        @Config.RangeInt(min = 20)
-        public int firePitFuelMaxAmount = 800;
-
-        @Config.Comment("The chance that a fire starter will start a fire")
-        @Config.RangeDouble(min = 0, max = 1)
-        public double fireStarterFireStartChance = 0.5;
-
         @Config.Comment("The chance for leaves to drop sticks when broken")
         @Config.RangeDouble(min = 0, max = 1)
         public double leavesStickDropChance = 0.2;
@@ -100,9 +67,6 @@ public final class ModConfig
         @Config.Comment("The chance for tall grass to drop plant fiber when broken with a knife")
         @Config.RangeDouble(min = 0, max = 1)
         public double tallGrassDropPlantFiberChance = 0.4;
-
-        @Config.Comment("Can the player pick up rocks by right clicking? (vs. having to mine them)")
-        public boolean canPickUpRocks = true;
 
         private BalanceConfig() {}
     }
@@ -151,25 +115,5 @@ public final class ModConfig
         public boolean enableSteelTools = true;
 
         private ToolsConfig() {}
-    }
-
-    public static class CompatConfig
-    {
-        @Config.Comment("Enable compatibility features from Rustic (slate cobblestone + loose rock)")
-        @Config.RequiresMcRestart
-        public boolean enableRusticCompat = true;
-
-        @Config.Comment("Enable compatibility features from Quark (marble + limestone cobblestone and loose rock)")
-        @Config.RequiresMcRestart
-        public boolean enableQuarkCompat = true;
-
-        @Config.Comment("Enable compatability features from Chisel (marble + limestone + basalt loose rocks)")
-        public boolean enableChiselCompat = true;
-        
-        //@Config.Comment("Enable compatibility features from Underground Biomes Constructs (UBC) (loose rocks)")
-        //@Config.RequiresMcRestart
-        //public boolean enableUBCCompat = true;
-
-        private CompatConfig() {}
     }
 }

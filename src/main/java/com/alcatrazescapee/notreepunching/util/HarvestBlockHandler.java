@@ -27,9 +27,7 @@ import com.alcatrazescapee.alcatrazcore.util.CoreHelpers;
 import com.alcatrazescapee.notreepunching.ModConfig;
 import com.alcatrazescapee.notreepunching.NoTreePunching;
 import com.alcatrazescapee.notreepunching.common.items.ItemKnife;
-import com.alcatrazescapee.notreepunching.common.items.ItemRock;
 import com.alcatrazescapee.notreepunching.common.items.ModItems;
-import com.alcatrazescapee.notreepunching.util.types.Stone;
 import mcp.MethodsReturnNonnullByDefault;
 
 @MethodsReturnNonnullByDefault
@@ -70,14 +68,6 @@ public final class HarvestBlockHandler
 
     public static void addExtraDrops(List<ItemStack> drops, IBlockState state, EntityPlayer player, ItemStack stack, boolean isSilkTouch)
     {
-        // Stone -> Loose Rocks instead of cobblestone
-        Stone stone = Stone.getFromBlock(state);
-        if (stone != null && stone.isEnabled() && ModConfig.GENERAL.enableStoneDropChanges && !isSilkTouch)
-        {
-            drops.clear();
-            drops.add(new ItemStack(ItemRock.get(stone), 2 + Util.RNG.nextInt(3)));
-        }
-
         // Sticks from leaves
         if (state.getBlock() instanceof BlockLeaves && !isSilkTouch)
         {

@@ -9,13 +9,12 @@ package com.alcatrazescapee.notreepunching.client;
 import javax.annotation.Nonnull;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.alcatrazescapee.notreepunching.common.items.ItemRock;
 import com.alcatrazescapee.notreepunching.common.items.ModItems;
-import com.alcatrazescapee.notreepunching.util.types.Stone;
 import com.alcatrazescapee.notreepunching.util.types.ToolType;
 
 import static com.alcatrazescapee.notreepunching.NoTreePunching.MOD_ID;
@@ -29,7 +28,7 @@ public final class ModTabs
         @Nonnull
         public ItemStack createIcon()
         {
-            return new ItemStack(ItemRock.get(Stone.STONE));
+            return new ItemStack(Items.DIAMOND);
         }
     };
 

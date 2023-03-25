@@ -25,7 +25,6 @@ import com.alcatrazescapee.notreepunching.common.items.ModItems;
 import com.alcatrazescapee.notreepunching.common.recipe.ModRecipes;
 import com.alcatrazescapee.notreepunching.util.HarvestBlockHandler;
 import com.alcatrazescapee.notreepunching.util.WoodRecipeHandler;
-import com.alcatrazescapee.notreepunching.world.WorldGenRocks;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
 @Mod(modid = NoTreePunching.MOD_ID, version = NoTreePunching.VERSION, dependencies = NoTreePunching.DEPENDENCIES, useMetadata = true, certificateFingerprint = "3c2d6be715971d1ed58a028cdb3fae72987fc934")
@@ -81,8 +80,6 @@ public final class NoTreePunching
     {
         if (!isSignedBuild)
             log.warn("You are not running an official build. This version will NOT be supported by the author.");
-        // World gen
-        GameRegistry.registerWorldGenerator(new WorldGenRocks(), 3);
 
         // Init Managers
         ModRecipes.init();

@@ -10,8 +10,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import com.alcatrazescapee.notreepunching.ModConfig;
-import com.alcatrazescapee.notreepunching.client.gui.GuiFirePit;
-import com.alcatrazescapee.notreepunching.common.recipe.FirePitRecipe;
 import com.alcatrazescapee.notreepunching.common.recipe.KnifeRecipe;
 import com.alcatrazescapee.notreepunching.common.recipe.ModRecipes;
 import mezz.jei.api.IModPlugin;
@@ -26,14 +24,12 @@ import static com.alcatrazescapee.notreepunching.NoTreePunching.MOD_ID;
 public final class JeiPlugin implements IModPlugin
 {
     static final String KNIFE_UID = MOD_ID + ".knife";
-    static final String FIRE_PIT_UID = MOD_ID + ".fire_pit";
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry)
     {
         registry.addRecipeCategories(
-                new KnifeRecipeCategory(registry.getJeiHelpers().getGuiHelper()),
-                new FirePitRecipeCategory(registry.getJeiHelpers().getGuiHelper())
+                new KnifeRecipeCategory(registry.getJeiHelpers().getGuiHelper())
         );
     }
 
@@ -61,10 +57,5 @@ public final class JeiPlugin implements IModPlugin
         // Knife Recipes
         registry.handleRecipes(KnifeRecipe.class, KnifeRecipeCategory.Wrapper::new, KNIFE_UID);
         registry.addRecipes(ModRecipes.KNIFE.getAll(), KNIFE_UID);
-
-        // Firepit Recipes
-        registry.handleRecipes(FirePitRecipe.class, FirePitRecipeCategory.Wrapper::new, FIRE_PIT_UID);
-        registry.addRecipes(ModRecipes.FIRE_PIT.getAll(), FIRE_PIT_UID);
-        registry.addRecipeClickArea(GuiFirePit.class, 75, 22, 26, 19, FIRE_PIT_UID);
     }
 }

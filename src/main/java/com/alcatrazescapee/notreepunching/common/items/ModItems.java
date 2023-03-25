@@ -19,7 +19,6 @@ import com.alcatrazescapee.alcatrazcore.util.RegistryHelper;
 import com.alcatrazescapee.alcatrazcore.util.collections.ImmutableEnumTable;
 import com.alcatrazescapee.notreepunching.ModConfig;
 import com.alcatrazescapee.notreepunching.util.types.Metal;
-import com.alcatrazescapee.notreepunching.util.types.Stone;
 import com.alcatrazescapee.notreepunching.util.types.ToolType;
 
 import static com.alcatrazescapee.alcatrazcore.util.CoreHelpers.getNull;
@@ -38,7 +37,6 @@ public final class ModItems
     public static final Item CERAMIC_SMALL_VESSEL = getNull();
     public static final Item CERAMIC_BUCKET = getNull();
     public static final Item CLAY_TOOL = getNull();
-    public static final Item FIRE_STARTER = getNull();
 
     private static ImmutableMap<ToolType, Item> FLINT_TOOLS;
     private static ImmutableEnumTable<ToolType, Metal, Item> METAL_TOOLS;
@@ -60,7 +58,6 @@ public final class ModItems
 
         r.registerItem(new ItemCore(), "grass_fiber", TAB_ITEMS);
         r.registerItem(new ItemClayTool(), "clay_tool", TAB_TOOLS);
-        r.registerItem(new ItemFireStarter(), "fire_starter", TAB_TOOLS);
         r.registerItem(new ItemSmallVessel(), "ceramic_small_vessel", TAB_ITEMS);
         r.registerItem(new ItemCeramicBucket(), "ceramic_bucket", TAB_ITEMS);
 
@@ -71,12 +68,6 @@ public final class ModItems
         OreDictionaryHelper.register(item, "shard", "flint");
         r.registerItem(item = new ItemCore(), "clay_brick", TAB_ITEMS);
         OreDictionaryHelper.register(item, "brick", "clay");
-
-        for (Stone type : Stone.values())
-        {
-            if (type.isEnabled())
-                r.registerItem(new ItemRock(type), "rock/" + type.name(), TAB_ITEMS);
-        }
 
         {
             // Tools

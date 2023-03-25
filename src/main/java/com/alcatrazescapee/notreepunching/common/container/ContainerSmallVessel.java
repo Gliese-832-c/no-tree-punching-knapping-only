@@ -61,4 +61,9 @@ public class ContainerSmallVessel extends ContainerItemStack
             return super.slotClick(slotID, dragType, clickType, player);
         }
     }
+
+    @Override
+    public boolean canInteractWith(EntityPlayer playerIn) {
+        return true;
+    }
 }

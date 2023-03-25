@@ -8,13 +8,10 @@ package com.alcatrazescapee.notreepunching.common.recipe;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -27,20 +24,17 @@ import net.minecraftforge.registries.IForgeRegistryModifiable;
 import com.alcatrazescapee.alcatrazcore.inventory.recipe.IRecipeManager;
 import com.alcatrazescapee.alcatrazcore.inventory.recipe.RecipeManager;
 import com.alcatrazescapee.notreepunching.ModConfig;
-import com.alcatrazescapee.notreepunching.common.blocks.BlockCobble;
 import com.alcatrazescapee.notreepunching.common.blocks.BlockPottery;
 import com.alcatrazescapee.notreepunching.common.items.ModItems;
 import com.alcatrazescapee.notreepunching.util.Util;
 import com.alcatrazescapee.notreepunching.util.types.Metal;
 import com.alcatrazescapee.notreepunching.util.types.Pottery;
-import com.alcatrazescapee.notreepunching.util.types.Stone;
 import com.alcatrazescapee.notreepunching.util.types.ToolType;
 
 import static com.alcatrazescapee.notreepunching.NoTreePunching.MOD_ID;
 
 public final class ModRecipes
 {
-    public static final IRecipeManager<FirePitRecipe> FIRE_PIT = new RecipeManager<>();
     public static final IRecipeManager<KnifeRecipe> KNIFE = new RecipeManager<>();
 
     private static final List<IRecipeAction> actions = new LinkedList<>();
@@ -54,37 +48,11 @@ public final class ModRecipes
             {
                 BlockPottery block = BlockPottery.get(type);
                 GameRegistry.addSmelting(block, block.getFiredType(), 0.1f);
-                FIRE_PIT.add(new FirePitRecipe(block.getFiredType(), new ItemStack(block)));
-            }
-        }
-
-        // Fire pit food recipes
-        Map<ItemStack, ItemStack> map = FurnaceRecipes.instance().getSmeltingList();
-
-        for (Map.Entry<ItemStack, ItemStack> m : map.entrySet())
-        {
-            if (m.getValue().getItem() instanceof ItemFood)
-            {
-                FIRE_PIT.add(new FirePitRecipe(m.getValue().copy(), m.getKey().copy()));
-            }
-        }
-
-        /* SMELTING RECIPES */
-
-        for (Stone stone : Stone.values())
-        {
-            if (stone.isEnabled() && stone.hasCobblestone())
-            {
-                GameRegistry.addSmelting(BlockCobble.get(stone), stone.getStoneStack(), 0.1f);
             }
         }
 
         GameRegistry.addSmelting(ModItems.GRASS_STRING, new ItemStack(Items.STRING), 0.1f);
         GameRegistry.addSmelting(ModItems.CLAY_BRICK, new ItemStack(Items.BRICK), 0.1f);
-
-        /* FIRE PIT RECIPES */
-
-        FIRE_PIT.add(new FirePitRecipe(new ItemStack(Items.BRICK), "brickClay", 1));
 
         /* KNIFE RECIPES */
 
@@ -127,15 +95,6 @@ public final class ModRecipes
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event)
     {
         IForgeRegistryModifiable<IRecipe> r = (IForgeRegistryModifiable<IRecipe>) event.getRegistry();
-
-        for (Stone stone : Stone.values())
-        {
-            if (!stone.isDefault() && stone.isEnabled() && stone.hasCobblestone())
-            {
-                String oreName = Util.CASE_CONVERTER.convert("ROCK_" + stone.name());
-                register(r, new ShapedOreRecipe(new ResourceLocation(MOD_ID, "blocks/cobblestone_" + stone.name().toLowerCase()), BlockCobble.get(stone), "RR", "RR", 'R', oreName));
-            }
-        }
 
         if (ModConfig.TOOLS.enableTinTools)
         {
