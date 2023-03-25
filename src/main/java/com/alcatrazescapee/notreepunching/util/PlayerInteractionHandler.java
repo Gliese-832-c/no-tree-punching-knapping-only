@@ -9,6 +9,8 @@ package com.alcatrazescapee.notreepunching.util;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import com.alcatrazescapee.notreepunching.common.recipe.KnappingRecipe;
+import com.alcatrazescapee.notreepunching.common.recipe.ModRecipes;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,18 +36,32 @@ public final class PlayerInteractionHandler
     public static boolean hasAction(World world, BlockPos pos, ItemStack stack, @Nullable EnumFacing face)
     {
         IBlockState state = world.getBlockState(pos);
-        if (stack.getItem() == Items.FLINT)
-        {
-            return ModConfig.BALANCE.flintKnappingChance > 0 && state.getMaterial() == Material.ROCK && state.isNormalCube() && face == EnumFacing.UP;
+
+        boolean isKnappableItem = false;
+        for (KnappingRecipe recipe : ModRecipes.KNAPPING.getAll()) {
+            for (ItemStack itemStack : recipe.getInput().getStacks()) {
+                if (stack.getItem() == itemStack.getItem()) {
+                    isKnappableItem = true;
+                    break;
+                }
+            }
+            if (isKnappableItem) {
+                break;
+            }
         }
-        if (WoodRecipeHandler.isAxe(stack))
+
+        if (isKnappableItem)
+        {
+            return ModConfig.BALANCE.knappingChance > 0 && state.getMaterial() == Material.ROCK && state.isNormalCube() && face == EnumFacing.UP;
+        }
+        /*if (WoodRecipeHandler.isAxe(stack))
         {
             IBlockState stateDown = world.getBlockState(pos.down());
             if (face == EnumFacing.UP && stateDown.isOpaqueCube())
             {
                 return (WoodRecipeHandler.isLog(world, pos, state) && !WoodRecipeHandler.isLog(world, pos.down(), stateDown)) || WoodRecipeHandler.isPlank(world, pos, state);
             }
-        }
+        }*/
         return false;
     }
 
@@ -56,14 +72,27 @@ public final class PlayerInteractionHandler
      */
     public static boolean performAction(World world, BlockPos pos, EntityPlayer player, ItemStack stack, @Nullable EnumFacing face, EnumHand hand)
     {
-        if (stack.getItem() == Items.FLINT)
+        boolean isKnappableItem = false;
+        for (KnappingRecipe recipe : ModRecipes.KNAPPING.getAll()) {
+            for (ItemStack itemStack : recipe.getInput().getStacks()) {
+                if (stack.getItem() == itemStack.getItem()) {
+                    isKnappableItem = true;
+                    break;
+                }
+            }
+            if (isKnappableItem) {
+                break;
+            }
+        }
+
+        if (isKnappableItem)
         {
             return handleFlint(world, pos, player, stack, hand);
         }
-        if (WoodRecipeHandler.isAxe(stack))
+        /*if (WoodRecipeHandler.isAxe(stack))
         {
             return handleChopping(world, pos, player, stack);
-        }
+        }*/
         return false;
     }
 
@@ -71,11 +100,30 @@ public final class PlayerInteractionHandler
     {
         if (!world.isRemote)
         {
-            if (RNG.nextFloat() < ModConfig.BALANCE.flintKnappingChance)
+            if (RNG.nextFloat() < ModConfig.BALANCE.knappingChance)
             {
-                if (RNG.nextFloat() < ModConfig.BALANCE.flintKnappingSuccessChance)
+                if (RNG.nextFloat() < ModConfig.BALANCE.knappingSuccessChance)
                 {
-                    CoreHelpers.dropItemInWorldExact(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, new ItemStack(Items.DIAMOND, 2));
+                    ItemStack[] outputs = new ItemStack[]{};
+                    boolean isTheRightItem = false;
+                    int i = 0;
+                    for (KnappingRecipe recipe : ModRecipes.KNAPPING.getAll()) {
+                        for (ItemStack itemStack : recipe.getInput().getStacks()) {
+                            if (stack.getItem() == itemStack.getItem()) {
+                                isTheRightItem = true;
+                                outputs = recipe.getOutput();
+                                break;
+                            }
+                        }
+                        if (isTheRightItem) {
+                            break;
+                        }
+                        i++;
+                    }
+
+                    for (ItemStack itemStack : outputs) {
+                        CoreHelpers.dropItemInWorldExact(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, itemStack);
+                    }
                 }
                 player.setHeldItem(hand, CoreHelpers.consumeItem(player, stack));
             }

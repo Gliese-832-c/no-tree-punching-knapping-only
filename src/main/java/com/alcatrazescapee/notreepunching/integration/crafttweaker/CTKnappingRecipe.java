@@ -6,11 +6,8 @@
 
 package com.alcatrazescapee.notreepunching.integration.crafttweaker;
 
-import java.util.Arrays;
-
-import net.minecraft.item.ItemStack;
-
 import com.alcatrazescapee.alcatrazcore.inventory.ingredient.IRecipeIngredient;
+import com.alcatrazescapee.notreepunching.common.recipe.KnappingRecipe;
 import com.alcatrazescapee.notreepunching.common.recipe.KnifeRecipe;
 import com.alcatrazescapee.notreepunching.common.recipe.ModRecipes;
 import crafttweaker.CraftTweakerAPI;
@@ -19,40 +16,43 @@ import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.oredict.IOreDictEntry;
+import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+import java.util.Arrays;
+
 @ZenRegister
 @SuppressWarnings("unused")
-@ZenClass("mods.yesflintknapping.Knife")
-public class CTKnifeRecipe
+@ZenClass("mods.yesflintknapping.Knapping")
+public class CTKnappingRecipe
 {
     @ZenMethod
     public static void add(IIngredient input, IItemStack... output)
     {
-        KnifeRecipe recipe;
+        KnappingRecipe recipe;
         ItemStack[] outputStack = Arrays.stream(output).map(CraftTweakerPlugin::toStack).toArray(ItemStack[]::new);
         if (input instanceof IOreDictEntry)
         {
             IOreDictEntry ore = (IOreDictEntry) input;
-            recipe = new KnifeRecipe(ore.getName(), ore.getAmount(), outputStack);
+            recipe = new KnappingRecipe(ore.getName(), ore.getAmount(), outputStack);
         }
         else
         {
-            recipe = new KnifeRecipe(CraftTweakerPlugin.toStack(input), outputStack);
+            recipe = new KnappingRecipe(CraftTweakerPlugin.toStack(input), outputStack);
         }
         CraftTweakerAPI.apply(new IAction()
         {
             @Override
             public void apply()
             {
-                ModRecipes.addScheduledAction(() -> ModRecipes.KNIFE.add(recipe));
+                ModRecipes.addScheduledAction(() -> ModRecipes.KNAPPING.add(recipe));
             }
 
             @Override
             public String describe()
             {
-                return "Adding knife recipe for " + recipe.getName();
+                return "Adding knapping recipe for " + recipe.getName();
             }
         });
     }
@@ -75,13 +75,13 @@ public class CTKnifeRecipe
             @Override
             public void apply()
             {
-                ModRecipes.addScheduledAction(() -> ModRecipes.KNIFE.remove(ingredient));
+                ModRecipes.addScheduledAction(() -> ModRecipes.KNAPPING.remove(ingredient));
             }
 
             @Override
             public String describe()
             {
-                return "Removing knife recipe for " + ingredient.getName();
+                return "Removing knapping recipe for " + ingredient.getName();
             }
         });
     }

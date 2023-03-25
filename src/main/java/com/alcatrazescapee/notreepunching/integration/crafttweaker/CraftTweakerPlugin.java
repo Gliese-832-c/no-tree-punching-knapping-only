@@ -22,7 +22,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 
 @ZenRegister
 @SuppressWarnings("unused")
-@ZenClass("mods.notreepunching.NoTreePunching")
+@ZenClass("mods.yesflintknapping.YesFlintKnapping")
 public final class CraftTweakerPlugin
 {
     @ZenMethod
