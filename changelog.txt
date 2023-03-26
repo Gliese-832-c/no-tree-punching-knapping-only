@@ -1,1 +1,8 @@
-v2.0.21 - Last update for 1.12. Merge a PR that has been waiting for months but otherwise this is done for 1.12. 1.15 coming out soon (TM).
+--- 1.1.0 ---
+To be done
+
+--- 1.0.1 ---
+Fixed the knapping recipes to be able to handle metadata
+
+--- 1.0.0 ---
+Initial Release
