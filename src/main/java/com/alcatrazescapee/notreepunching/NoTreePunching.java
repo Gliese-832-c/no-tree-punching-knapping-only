@@ -29,7 +29,7 @@ public final class NoTreePunching
 
     public static final String MOD_ID = "yesflintknapping";
     public static final String MOD_NAME = "Yes Flint Knapping";
-    public static final String VERSION = "1.0.1";
+    public static final String VERSION = "1.1.0";
 
     // Versioning
     private static final String FORGE_MIN = "14.23.5.2847";
