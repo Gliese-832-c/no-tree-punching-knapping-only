@@ -27,19 +27,50 @@ import java.util.Arrays;
 @ZenClass("mods.yesflintknapping.Knapping")
 public class CTKnappingRecipe
 {
+
     @ZenMethod
-    public static void add(IIngredient input, IItemStack... output)
+    public static void add(float chance, float chanceSuccess, IIngredient input, IItemStack... output)
     {
         KnappingRecipe recipe;
         ItemStack[] outputStack = Arrays.stream(output).map(CraftTweakerPlugin::toStack).toArray(ItemStack[]::new);
         if (input instanceof IOreDictEntry)
         {
             IOreDictEntry ore = (IOreDictEntry) input;
-            recipe = new KnappingRecipe(ore.getName(), ore.getAmount(), outputStack);
+            recipe = new KnappingRecipe("default", "default", chance, chanceSuccess, ore.getName(), ore.getAmount(), outputStack);
         }
         else
         {
-            recipe = new KnappingRecipe(CraftTweakerPlugin.toStack(input), outputStack);
+            recipe = new KnappingRecipe("default", "default", chance, chanceSuccess, CraftTweakerPlugin.toStack(input), outputStack);
+        }
+        CraftTweakerAPI.apply(new IAction()
+        {
+            @Override
+            public void apply()
+            {
+                ModRecipes.addScheduledAction(() -> ModRecipes.KNAPPING.add(recipe));
+            }
+
+            @Override
+            public String describe()
+            {
+                return "Adding knapping recipe for " + recipe.getName();
+            }
+        });
+    }
+
+    @ZenMethod
+    public static void addCustom(String blockOverride, String soundEvent, float chance, float chanceSuccess, IIngredient input, IItemStack... output)
+    {
+        KnappingRecipe recipe;
+        ItemStack[] outputStack = Arrays.stream(output).map(CraftTweakerPlugin::toStack).toArray(ItemStack[]::new);
+        if (input instanceof IOreDictEntry)
+        {
+            IOreDictEntry ore = (IOreDictEntry) input;
+            recipe = new KnappingRecipe(blockOverride, soundEvent, chance, chanceSuccess, ore.getName(), ore.getAmount(), outputStack);
+        }
+        else
+        {
+            recipe = new KnappingRecipe(blockOverride, soundEvent, chance, chanceSuccess, CraftTweakerPlugin.toStack(input), outputStack);
         }
         CraftTweakerAPI.apply(new IAction()
         {

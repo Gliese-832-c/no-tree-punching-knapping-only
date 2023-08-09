@@ -11,13 +11,26 @@ import net.minecraft.item.ItemStack;
 
 public class KnappingRecipe extends RecipeMultiOutput
 {
-    public KnappingRecipe(ItemStack inputStack, ItemStack... outputStacks)
+    public String blockOverride;
+    public String soundEvent;
+    public float chance;
+    public float chanceSuccess;
+
+    public KnappingRecipe(String blockOverride, String soundEvent, float chance, float chanceSuccess, ItemStack inputStack, ItemStack... outputStacks)
     {
         super(inputStack, outputStacks);
+        this.blockOverride = blockOverride;
+        this.soundEvent = soundEvent;
+        this.chance = chance;
+        this.chanceSuccess = chanceSuccess;
     }
 
-    public KnappingRecipe(String inputOre, int inputAmount, ItemStack... outputStacks)
+    public KnappingRecipe(String blockOverride, String soundEvent, float chance, float chanceSuccess, String inputOre, int inputAmount, ItemStack... outputStacks)
     {
         super(inputOre, inputAmount, outputStacks);
+        this.blockOverride = blockOverride;
+        this.soundEvent = soundEvent;
+        this.chance = chance;
+        this.chanceSuccess = chanceSuccess;
     }
 }

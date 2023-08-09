@@ -17,9 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -38,11 +36,19 @@ public final class PlayerInteractionHandler
         IBlockState state = world.getBlockState(pos);
 
         boolean isKnappableItem = false;
+        boolean isValidBlock = false;
         for (KnappingRecipe recipe : ModRecipes.KNAPPING.getAll()) {
             for (ItemStack itemStack : recipe.getInput().getStacks()) {
                 if (stack.getItem() == itemStack.getItem()) {
-                    isKnappableItem = true;
-                    break;
+                    if (recipe.blockOverride.equals("default") && state.getMaterial() == Material.ROCK && state.isNormalCube() && face == EnumFacing.UP) {
+                        isKnappableItem = true;
+                        isValidBlock = true;
+                        break;
+                    } else if (state.getBlock().getRegistryName().toString().equals(recipe.blockOverride)) {
+                        isKnappableItem = true;
+                        isValidBlock = true;
+                        break;
+                    }
                 }
             }
             if (isKnappableItem) {
@@ -50,10 +56,8 @@ public final class PlayerInteractionHandler
             }
         }
 
-        if (isKnappableItem)
-        {
-            return ModConfig.BALANCE.knappingChance > 0 && state.getMaterial() == Material.ROCK && state.isNormalCube() && face == EnumFacing.UP;
-        }
+        return isKnappableItem && isValidBlock /*&& ModConfig.BALANCE.knappingChance > 0*/;
+
         /*if (WoodRecipeHandler.isAxe(stack))
         {
             IBlockState stateDown = world.getBlockState(pos.down());
@@ -62,7 +66,6 @@ public final class PlayerInteractionHandler
                 return (WoodRecipeHandler.isLog(world, pos, state) && !WoodRecipeHandler.isLog(world, pos.down(), stateDown)) || WoodRecipeHandler.isPlank(world, pos, state);
             }
         }*/
-        return false;
     }
 
     /**
@@ -73,10 +76,16 @@ public final class PlayerInteractionHandler
     public static boolean performAction(World world, BlockPos pos, EntityPlayer player, ItemStack stack, @Nullable EnumFacing face, EnumHand hand)
     {
         boolean isKnappableItem = false;
+        String soundEvent = "default";
+        float chance = -1.0f;
+        float chanceSuccess = -1.0f;
         for (KnappingRecipe recipe : ModRecipes.KNAPPING.getAll()) {
             for (ItemStack itemStack : recipe.getInput().getStacks()) {
                 if (stack.getItem() == itemStack.getItem()) {
                     isKnappableItem = true;
+                    soundEvent = recipe.soundEvent;
+                    chance = recipe.chance;
+                    chanceSuccess = recipe.chanceSuccess;
                     break;
                 }
             }
@@ -87,7 +96,7 @@ public final class PlayerInteractionHandler
 
         if (isKnappableItem)
         {
-            return handleFlint(world, pos, player, stack, hand);
+            return handleFlint(world, pos, player, stack, hand, soundEvent, chance, chanceSuccess);
         }
         /*if (WoodRecipeHandler.isAxe(stack))
         {
@@ -96,13 +105,13 @@ public final class PlayerInteractionHandler
         return false;
     }
 
-    private static boolean handleFlint(World world, BlockPos pos, EntityPlayer player, ItemStack stack, EnumHand hand)
+    private static boolean handleFlint(World world, BlockPos pos, EntityPlayer player, ItemStack stack, EnumHand hand, String soundEvent, float chance, float chanceSuccess)
     {
         if (!world.isRemote)
         {
-            if (RNG.nextFloat() < ModConfig.BALANCE.knappingChance)
+            if (RNG.nextFloat() < chance)
             {
-                if (RNG.nextFloat() < ModConfig.BALANCE.knappingSuccessChance)
+                if (RNG.nextFloat() < chanceSuccess)
                 {
                     ItemStack[] outputs = new ItemStack[]{};
                     boolean isTheRightItem = false;
@@ -127,7 +136,12 @@ public final class PlayerInteractionHandler
                 }
                 player.setHeldItem(hand, CoreHelpers.consumeItem(player, stack));
             }
-            world.playSound(null, pos, ModSounds.KNAPPING, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            if (soundEvent.equals("default")) {
+                world.playSound(null, pos, ModSounds.KNAPPING, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            } else {
+                SoundEvent sound = SoundEvent.REGISTRY.getObject(new ResourceLocation(soundEvent));
+                world.playSound(null, pos, sound, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            }
         }
         return true;
     }

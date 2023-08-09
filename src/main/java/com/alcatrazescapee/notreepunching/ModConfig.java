@@ -45,13 +45,13 @@ public final class ModConfig
 
     public static class BalanceConfig
     {
-        @Config.Comment("Chance for a knapping to occur. Set to zero to disable knapping.")
+        /*@Config.Comment("Chance for a knapping to occur. Set to zero to disable knapping.")
         @Config.RangeDouble(min = 0, max = 1)
         public double knappingChance = 0.6;
 
         @Config.Comment("Chance for a successful knapping")
         @Config.RangeDouble(min = 0, max = 1)
-        public double knappingSuccessChance = 0.7;
+        public double knappingSuccessChance = 0.7;*/
 
         @Config.Comment("Chance for a log chopping to occur")
         @Config.RangeDouble(min = 0, max = 1)
