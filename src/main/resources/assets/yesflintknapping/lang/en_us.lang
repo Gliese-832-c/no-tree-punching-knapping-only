@@ -33,11 +33,13 @@ tile.yesflintknapping:ceramic_large_vessel.name=Clay Vessel
 
 jei.category.knife_recipe=Knife Cutting
 
-jei.description.stick=Sticks are dropped occasionally from leaves.
-jei.description.flint_shard=Flint shards are obtained by knapping (right clicking) a piece of flint on top of any rocky surface. It has a chance to split into two flint shards.
-jei.description.knife=Knives can be used to cut materials. Hold the knife in one and and the item in the other. Right click to cut the material in your other hand.
+jei.category.knapping_recipe=Right-Click Interaction
+
+#jei.description.stick=Sticks are dropped occasionally from leaves.
+#jei.description.flint_shard=Flint shards are obtained by knapping (right clicking) a piece of flint on top of any rocky surface. It has a chance to split into two flint shards.
+#jei.description.knife=Knives can be used to cut materials. Hold the knife in one and and the item in the other. Right click to cut the material in your other hand.
 jei.description.mattock=Mattocks are multi-purpose tools: An axe and shovel and a hoe all in one!
-jei.description.saw=Saws are used to cut wood into planks. They can also be used as axes.
+#jei.description.saw=Saws are used to cut wood into planks. They can also be used as axes.
 
 # Misc
 

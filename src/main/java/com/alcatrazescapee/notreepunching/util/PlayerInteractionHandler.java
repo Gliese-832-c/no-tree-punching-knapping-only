@@ -39,7 +39,7 @@ public final class PlayerInteractionHandler
         boolean isValidBlock = false;
         for (KnappingRecipe recipe : ModRecipes.KNAPPING.getAll()) {
             for (ItemStack itemStack : recipe.getInput().getStacks()) {
-                if (stack.getItem() == itemStack.getItem()) {
+                if ((stack.getItem() == itemStack.getItem()) && (stack.getMetadata() == itemStack.getMetadata())) {
                     if (recipe.blockOverride.equals("default") && state.getMaterial() == Material.ROCK && state.isNormalCube() && face == EnumFacing.UP) {
                         isKnappableItem = true;
                         isValidBlock = true;
@@ -81,7 +81,7 @@ public final class PlayerInteractionHandler
         float chanceSuccess = -1.0f;
         for (KnappingRecipe recipe : ModRecipes.KNAPPING.getAll()) {
             for (ItemStack itemStack : recipe.getInput().getStacks()) {
-                if (stack.getItem() == itemStack.getItem()) {
+                if ((stack.getItem() == itemStack.getItem()) && (stack.getMetadata() == itemStack.getMetadata())) {
                     isKnappableItem = true;
                     soundEvent = recipe.soundEvent;
                     chance = recipe.chance;

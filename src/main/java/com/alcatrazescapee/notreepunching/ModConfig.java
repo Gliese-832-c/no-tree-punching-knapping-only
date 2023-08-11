@@ -29,11 +29,6 @@ public final class ModConfig
         public boolean replaceLogRecipes = true;
 
         @Config.RequiresMcRestart
-        @Config.Comment({"If true, NTP will remove recipes for vanilla wooden + stone tools. It will also attempt to hide these items from the creative inventory.",
-                "If false, NTP will not add or remove any vanilla recipes"})
-        public boolean replaceVanillaRecipes = true;
-
-        @Config.RequiresMcRestart
         @Config.Comment("If true, this will allow NTP to search aggressively for recipes and try and replace log -> wood recipes. (Makes NTPs wood chopping / saw recipes more automatic.) For pack makers: this WILL run after craft tweaker, and it WILL override any recipes craft tweaker adds.")
         public boolean enableAdvancedRecipeReplacement = true;
 

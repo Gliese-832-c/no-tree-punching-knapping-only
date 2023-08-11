@@ -6,6 +6,7 @@
 
 package com.alcatrazescapee.notreepunching.integration.jei;
 
+import com.alcatrazescapee.notreepunching.common.recipe.KnappingRecipe;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -24,38 +25,26 @@ import static com.alcatrazescapee.notreepunching.NoTreePunching.MOD_ID;
 public final class JeiPlugin implements IModPlugin
 {
     static final String KNIFE_UID = MOD_ID + ".knife";
+    static final String KNAPPING_UID = MOD_ID + ".knapping";
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry)
     {
         registry.addRecipeCategories(
-                new KnifeRecipeCategory(registry.getJeiHelpers().getGuiHelper())
+                new KnifeRecipeCategory(registry.getJeiHelpers().getGuiHelper()),
+                new KnappingRecipeCategory(registry.getJeiHelpers().getGuiHelper())
         );
     }
 
     @Override
     public void register(IModRegistry registry)
     {
-        // Hide vanilla wood + stone tools from JEI
-        if (ModConfig.GENERAL.replaceVanillaRecipes)
-        {
-            IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
-
-            blacklist.addIngredientToBlacklist(new ItemStack(Items.WOODEN_AXE));
-            blacklist.addIngredientToBlacklist(new ItemStack(Items.WOODEN_HOE));
-            blacklist.addIngredientToBlacklist(new ItemStack(Items.WOODEN_PICKAXE));
-            blacklist.addIngredientToBlacklist(new ItemStack(Items.WOODEN_SHOVEL));
-            blacklist.addIngredientToBlacklist(new ItemStack(Items.WOODEN_SWORD));
-
-            blacklist.addIngredientToBlacklist(new ItemStack(Items.STONE_AXE));
-            blacklist.addIngredientToBlacklist(new ItemStack(Items.STONE_HOE));
-            blacklist.addIngredientToBlacklist(new ItemStack(Items.STONE_PICKAXE));
-            blacklist.addIngredientToBlacklist(new ItemStack(Items.STONE_SHOVEL));
-            blacklist.addIngredientToBlacklist(new ItemStack(Items.STONE_SWORD));
-        }
-
         // Knife Recipes
         registry.handleRecipes(KnifeRecipe.class, KnifeRecipeCategory.Wrapper::new, KNIFE_UID);
         registry.addRecipes(ModRecipes.KNIFE.getAll(), KNIFE_UID);
+
+        // Knapping Recipes
+        registry.handleRecipes(KnappingRecipe.class, KnappingRecipeCategory.Wrapper::new, KNAPPING_UID);
+        registry.addRecipes(ModRecipes.KNAPPING.getAll(), KNAPPING_UID);
     }
 }

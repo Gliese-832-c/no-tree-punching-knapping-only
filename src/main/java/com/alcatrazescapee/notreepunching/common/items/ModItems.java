@@ -63,20 +63,5 @@ public final class ModItems
     @SuppressWarnings("ConstantConditions")
     public static void init()
     {
-        // Remove wood + stone tools from creative tabs
-        if (ModConfig.GENERAL.replaceVanillaRecipes)
-        {
-            Items.WOODEN_AXE.setCreativeTab(null);
-            Items.WOODEN_HOE.setCreativeTab(null);
-            Items.WOODEN_PICKAXE.setCreativeTab(null);
-            Items.WOODEN_SHOVEL.setCreativeTab(null);
-            Items.WOODEN_SWORD.setCreativeTab(null);
-
-            Items.STONE_AXE.setCreativeTab(null);
-            Items.STONE_HOE.setCreativeTab(null);
-            Items.STONE_PICKAXE.setCreativeTab(null);
-            Items.STONE_SHOVEL.setCreativeTab(null);
-            Items.STONE_SWORD.setCreativeTab(null);
-        }
     }
 }
