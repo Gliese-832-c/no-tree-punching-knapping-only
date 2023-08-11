@@ -8,15 +8,9 @@ package com.alcatrazescapee.notreepunching.util.types;
 
 import javax.annotation.Nonnull;
 
+import com.alcatrazescapee.alcatrazcore.item.tool.*;
+import com.alcatrazescapee.notreepunching.common.items.*;
 import net.minecraft.item.Item;
-
-import com.alcatrazescapee.alcatrazcore.item.tool.ItemAxeCore;
-import com.alcatrazescapee.alcatrazcore.item.tool.ItemHoeCore;
-import com.alcatrazescapee.alcatrazcore.item.tool.ItemPickCore;
-import com.alcatrazescapee.alcatrazcore.item.tool.ItemSpadeCore;
-import com.alcatrazescapee.notreepunching.common.items.ItemKnife;
-import com.alcatrazescapee.notreepunching.common.items.ItemMattock;
-import com.alcatrazescapee.notreepunching.common.items.ItemSaw;
 
 public enum ToolType
 {
@@ -24,9 +18,12 @@ public enum ToolType
     AXE(false),
     SHOVEL(false),
     HOE(false),
+    SWORD(false),
     KNIFE(true),
     MATTOCK(true),
-    SAW(true);
+    SAW(true),
+    HAMMER(true),
+    CHISEL(true);
     public final boolean isNewTool;
 
     ToolType(boolean isNewTool)
@@ -39,12 +36,26 @@ public enum ToolType
     {
         switch (this)
         {
+            case PICKAXE:
+                return new ItemPickCore(material);
+            case AXE:
+                return new ItemAxe(material);
+            case SHOVEL:
+                return new ItemSpade(material);
+            case HOE:
+                return new ItemHoeCore(material);
+            case SWORD:
+                return new ItemSwordCore(material);
             case KNIFE:
                 return new ItemKnife(material);
-            case SAW:
-                return new ItemSaw(material);
             case MATTOCK:
                 return new ItemMattock(material);
+            case SAW:
+                return new ItemSaw(material);
+            case HAMMER:
+                return new ItemHammer(material);
+            case CHISEL:
+                return new ItemChisel(material);
         }
         throw new IllegalStateException("This type does not support new tools");
     }

@@ -6,14 +6,13 @@
 
 package com.alcatrazescapee.notreepunching.common.items;
 
-import net.minecraft.init.Items;
+import com.alcatrazescapee.notreepunching.ModConfig;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import com.alcatrazescapee.alcatrazcore.util.OreDictionaryHelper;
 import com.alcatrazescapee.alcatrazcore.util.RegistryHelper;
 import com.alcatrazescapee.alcatrazcore.util.collections.ImmutableEnumTable;
-import com.alcatrazescapee.notreepunching.ModConfig;
 import com.alcatrazescapee.notreepunching.util.types.Metal;
 import com.alcatrazescapee.notreepunching.util.types.ToolType;
 
@@ -34,15 +33,14 @@ public final class ModItems
     {
         RegistryHelper r = RegistryHelper.get(MOD_ID);
         Item item;
-
-        {
+        if (ModConfig.TOOLS.enableTools) {
             // Tools
             ImmutableEnumTable.Builder<ToolType, Metal, Item> metalTools = new ImmutableEnumTable.Builder<>(ToolType.class, Metal.class);
 
             for (ToolType type : ToolType.values())
             {
-                if (type.isNewTool)
-                {
+                /*if (type.isNewTool)
+                {*/
                     for (Metal metal : Metal.values())
                     {
                         // Metal Tools
@@ -53,7 +51,7 @@ public final class ModItems
                             OreDictionaryHelper.register(item, "tool", type.name());
                         }
                     }
-                }
+                //}
             }
 
             METAL_TOOLS = metalTools.build();

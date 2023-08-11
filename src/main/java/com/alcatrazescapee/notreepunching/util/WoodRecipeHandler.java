@@ -42,7 +42,7 @@ public final class WoodRecipeHandler
     private static final Map<ItemStack, ItemStack> WOOD_TYPES = new HashMap<>();
     private static int LOGS_FOUND = 0;
 
-    public static void registerRecipes(RegistryEvent.Register<IRecipe> event)
+    /*public static void registerRecipes(RegistryEvent.Register<IRecipe> event)
     {
         IForgeRegistryModifiable<IRecipe> registry = (IForgeRegistryModifiable<IRecipe>) event.getRegistry();
         findMatchingRecipes(registry.getValuesCollection(), registry);
@@ -52,7 +52,7 @@ public final class WoodRecipeHandler
         {
             registry.remove(new ResourceLocation("minecraft:stick"));
         }
-    }
+    }*/
 
     /**
      * Try and catch any late recipes registered
@@ -60,7 +60,7 @@ public final class WoodRecipeHandler
      */
     public static void postInit()
     {
-        findMatchingRecipes(ForgeRegistries.RECIPES.getValuesCollection(), ((IForgeRegistryModifiable<IRecipe>) ForgeRegistries.RECIPES));
+        //findMatchingRecipes(ForgeRegistries.RECIPES.getValuesCollection(), ((IForgeRegistryModifiable<IRecipe>) ForgeRegistries.RECIPES));
     }
 
     public static void registerWoodRecipe(ItemStack log, ItemStack plank)
@@ -97,7 +97,7 @@ public final class WoodRecipeHandler
         return WOOD_TYPES.entrySet().stream().filter(x -> CoreHelpers.doStacksMatch(x.getKey(), search)).map(Map.Entry::getValue).findFirst().orElse(null);
     }
 
-    private static void findMatchingRecipes(Collection<IRecipe> recipes, IForgeRegistryModifiable<IRecipe> registry)
+    /*private static void findMatchingRecipes(Collection<IRecipe> recipes, IForgeRegistryModifiable<IRecipe> registry)
     {
         InventoryCraftingEmpty tempCrafting = new InventoryCraftingEmpty(3, 3);
         NonNullList<ItemStack> logs = OreDictionary.getOres("logWood", false);
@@ -166,7 +166,7 @@ public final class WoodRecipeHandler
         {
             NoTreePunching.getLog().info("Found and replaced additional {} Log -> Planks recipes with Saw + Log -> Plank recipes. (Second Pass)", LOGS_FOUND - previousLogsFound);
         }
-    }
+    }*/
 
     @Nullable
     private static IRecipe tryFindRecipeSafely(Collection<IRecipe> recipes, InventoryCrafting tempCrafting)

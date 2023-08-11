@@ -139,7 +139,7 @@ public final class ModEventHandler
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event)
     {
-        WoodRecipeHandler.registerRecipes(event);
+        //WoodRecipeHandler.registerRecipes(event);
     }
 
     @SubscribeEvent

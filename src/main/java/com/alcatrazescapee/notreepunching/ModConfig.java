@@ -24,11 +24,6 @@ public final class ModConfig
         public String[] alwaysBreakable = new String[] {"minecraft:leaves", "minecraft:gravel", "minecraft:sand", "minecraft:dirt", "minecraft:grass"};
 
         @Config.RequiresMcRestart
-        @Config.Comment({"If true, NTP will add its own log->plank and plank->stick recipes and remove old versions",
-                "If false, NTP will still add its own recipes, but it will not remove any other vanilla or modded recipes"})
-        public boolean replaceLogRecipes = true;
-
-        @Config.RequiresMcRestart
         @Config.Comment("If true, this will allow NTP to search aggressively for recipes and try and replace log -> wood recipes. (Makes NTPs wood chopping / saw recipes more automatic.) For pack makers: this WILL run after craft tweaker, and it WILL override any recipes craft tweaker adds.")
         public boolean enableAdvancedRecipeReplacement = true;
 
@@ -40,14 +35,6 @@ public final class ModConfig
 
     public static class BalanceConfig
     {
-        /*@Config.Comment("Chance for a knapping to occur. Set to zero to disable knapping.")
-        @Config.RangeDouble(min = 0, max = 1)
-        public double knappingChance = 0.6;
-
-        @Config.Comment("Chance for a successful knapping")
-        @Config.RangeDouble(min = 0, max = 1)
-        public double knappingSuccessChance = 0.7;*/
-
         @Config.Comment("Chance for a log chopping to occur")
         @Config.RangeDouble(min = 0, max = 1)
         public double logChoppingChance = 0.6;
@@ -61,41 +48,9 @@ public final class ModConfig
 
     public static class ToolsConfig
     {
-        @Config.Comment("Mining level of tin tools. 0 = Wood, 1 = Stone, 2 = Iron, 3 = Diamond")
-        @Config.RangeInt(min = 0, max = 4)
+        @Config.Comment("Whether to enable tools at all")
         @Config.RequiresMcRestart
-        public int miningLevelTin = 0;
-
-        @Config.Comment("Mining level of copper tools. 0 = Wood, 1 = Stone, 2 = Iron, 3 = Diamond")
-        @Config.RangeInt(min = 0, max = 4)
-        @Config.RequiresMcRestart
-        public int miningLevelCopper = 1;
-
-        @Config.Comment("Mining level of bronze tools. 0 = Wood, 1 = Stone, 2 = Iron, 3 = Diamond")
-        @Config.RangeInt(min = 0, max = 4)
-        @Config.RequiresMcRestart
-        public int miningLevelBronze = 2;
-
-        @Config.Comment("Mining level of steel tools. 0 = Wood, 1 = Stone, 2 = Iron, 3 = Diamond")
-        @Config.RangeInt(min = 0, max = 4)
-        @Config.RequiresMcRestart
-        public int miningLevelSteel = 3;
-
-        @Config.Comment("Enable copper versions of NTP tools (knife, mattock, saw)")
-        @Config.RequiresMcRestart
-        public boolean enableCopperTools = true;
-
-        @Config.Comment("Enable tin versions of NTP tools (knife, mattock, saw)")
-        @Config.RequiresMcRestart
-        public boolean enableTinTools = true;
-
-        @Config.Comment("Enable bronze versions of NTP tools (knife, mattock, saw)")
-        @Config.RequiresMcRestart
-        public boolean enableBronzeTools = true;
-
-        @Config.Comment("Enable steel versions of NTP tools (knife, mattock, saw)")
-        @Config.RequiresMcRestart
-        public boolean enableSteelTools = true;
+        public boolean enableTools = true;
 
         private ToolsConfig() {}
     }

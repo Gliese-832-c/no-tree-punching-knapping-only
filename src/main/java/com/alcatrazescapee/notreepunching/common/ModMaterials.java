@@ -15,8 +15,7 @@ import static com.alcatrazescapee.notreepunching.NoTreePunching.MOD_ID;
 
 public final class ModMaterials
 {
-    public static final Item.ToolMaterial TOOL_TIN = EnumHelper.addToolMaterial(MOD_ID + ":tin", ModConfig.TOOLS.miningLevelTin, 120, 3f, 1.0f, 2);
-    public static final Item.ToolMaterial TOOL_COPPER = EnumHelper.addToolMaterial(MOD_ID + ":copper", ModConfig.TOOLS.miningLevelCopper, 220, 4f, 1.5f, 4);
-    public static final Item.ToolMaterial TOOL_BRONZE = EnumHelper.addToolMaterial(MOD_ID + ":bronze", ModConfig.TOOLS.miningLevelBronze, 560, 8f, 2.0f, 8);
-    public static final Item.ToolMaterial TOOL_STEEL = EnumHelper.addToolMaterial(MOD_ID + ":steel", ModConfig.TOOLS.miningLevelSteel, 1800, 11f, 2.5f, 10);
+    public static final Item.ToolMaterial TOOL_COPPER = EnumHelper.addToolMaterial(MOD_ID + ":copper", 0, 220, 4f, 0.0f, 4);
+    public static final Item.ToolMaterial TOOL_BRONZE = EnumHelper.addToolMaterial(MOD_ID + ":bronze", 1, 560, 8f, 1.5f, 8);
+    public static final Item.ToolMaterial TOOL_STEEL = EnumHelper.addToolMaterial(MOD_ID + ":steel", 3, 1800, 11f, 3.0f, 10);
 }

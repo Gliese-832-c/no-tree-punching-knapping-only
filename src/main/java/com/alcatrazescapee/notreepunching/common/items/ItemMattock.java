@@ -30,7 +30,7 @@ public class ItemMattock extends ItemToolCore
 {
     public ItemMattock(ToolMaterial material)
     {
-        super(material, Math.max(material.getAttackDamage() - 2.0f, 1.0f), -2.7f);
+        super(material, 1.5f, -2.7f);
 
         addToolClass(ToolClass.AXE);
         addToolClass(ToolClass.SHOVEL);

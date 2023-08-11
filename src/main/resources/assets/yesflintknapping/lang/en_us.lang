@@ -1,28 +1,56 @@
 # Items
 
 item.yesflintknapping:knife.iron.name=Iron Knife
-item.yesflintknapping:knife.gold.name=Gold Knife
-item.yesflintknapping:knife.diamond.name=Diamond Knife
 item.yesflintknapping:knife.copper.name=Copper Knife
-item.yesflintknapping:knife.tin.name=Tin Knife
 item.yesflintknapping:knife.bronze.name=Bronze Knife
 item.yesflintknapping:knife.steel.name=Steel Knife
 
 item.yesflintknapping:saw.iron.name=Iron Saw
-item.yesflintknapping:saw.gold.name=Gold Saw
-item.yesflintknapping:saw.diamond.name=Diamond Saw
 item.yesflintknapping:saw.copper.name=Copper Saw
-item.yesflintknapping:saw.tin.name=Tin Saw
 item.yesflintknapping:saw.bronze.name=Bronze Saw
 item.yesflintknapping:saw.steel.name=Steel Saw
 
 item.yesflintknapping:mattock.iron.name=Iron Mattock
-item.yesflintknapping:mattock.gold.name=Gold Mattock
-item.yesflintknapping:mattock.diamond.name=Diamond Mattock
 item.yesflintknapping:mattock.copper.name=Copper Mattock
-item.yesflintknapping:mattock.tin.name=Tin Mattock
 item.yesflintknapping:mattock.bronze.name=Bronze Mattock
 item.yesflintknapping:mattock.steel.name=Steel Mattock
+
+item.yesflintknapping:pickaxe.iron.name=Iron Pickaxe
+item.yesflintknapping:pickaxe.copper.name=Copper Pickaxe
+item.yesflintknapping:pickaxe.bronze.name=Bronze Pickaxe
+item.yesflintknapping:pickaxe.steel.name=Steel Pickaxe
+
+item.yesflintknapping:axe.iron.name=Iron Axe
+item.yesflintknapping:axe.copper.name=Copper Hatchet
+item.yesflintknapping:axe.bronze.name=Bronze Axe
+item.yesflintknapping:axe.steel.name=Steel Axe
+
+item.yesflintknapping:shovel.iron.name=Iron Shovel
+item.yesflintknapping:shovel.copper.name=Copper Shovel
+item.yesflintknapping:shovel.bronze.name=Bronze Shovel
+item.yesflintknapping:shovel.steel.name=Steel Shovel
+
+item.yesflintknapping:hoe.iron.name=Iron Hoe
+item.yesflintknapping:hoe.copper.name=Copper Hoe
+item.yesflintknapping:hoe.bronze.name=Bronze Hoe
+item.yesflintknapping:hoe.steel.name=Steel Hoe
+
+item.yesflintknapping:sword.iron.name=Iron Sword
+item.yesflintknapping:sword.copper.name=Copper Sword
+item.yesflintknapping:sword.bronze.name=Bronze Sword
+item.yesflintknapping:sword.steel.name=Steel Sword
+
+item.yesflintknapping:hammer.iron.name=Iron Hammer
+item.yesflintknapping:hammer.copper.name=Copper Hammer
+item.yesflintknapping:hammer.bronze.name=Bronze Hammer
+item.yesflintknapping:hammer.steel.name=Steel Hammer
+
+item.yesflintknapping:chisel.iron.name=Iron Chisel
+item.yesflintknapping:chisel.copper.name=Copper Chisel
+item.yesflintknapping:chisel.bronze.name=Bronze Chisel
+item.yesflintknapping:chisel.steel.name=Steel Chisel
+
+
 
 # Blocks
 
